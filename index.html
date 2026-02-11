@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xGAFFER | Tactical FPL Suite</title>
+    <meta name="description"
+        content="A modern web application for analyzing Fantasy Premier League team picks and transfers.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Gathering FPL Intel...</p>
+        </div>
+    </div>
+
+    <div id="app">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>xGAFFER</span>
+                </a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#overview" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#analysis" data-section="analysis">Analysis</a></li>
+                    <li><a href="#transfers" data-section="transfers">Transfers</a></li>
+                    <li><a href="#advisor" data-section="advisor">AI Advisor</a></li>
+                    <li><a href="#projections" data-section="projections">Projections</a></li>
+                    <li><a href="#live" data-section="live">Live GW</a></li>
+                    <li><a href="#mini-league" data-section="mini-league">Leagues</a></li>
+                    <li><a href="#watchlist" data-section="watchlist">Watchlist</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="team-loader">
+                        <input type="number" id="team-id-input" placeholder="Team ID" class="input-mini">
+                        <button id="load-team-btn" class="btn btn-primary btn-sm">Load</button>
+                    </div>
+                    <button id="refresh-data" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Sync</span>
+                    </button>
+                    <button id="export-btn" class="btn btn-secondary" title="Export Squad CSV">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                    <div class="user-profile">
+                        <button class="profile-toggle btn-icon" id="notification-bell" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge hidden"></span>
+                        </button>
+                        <button class="profile-toggle btn-icon" id="bot-trigger" title="Live Tactical Assistant">
+                            <i class="fas fa-robot"></i>
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="login-trigger">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <button class="profile-toggle hidden" id="profile-toggle">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <section id="overview" class="content-section active">
+                <div class="loading-state">Loading lineup stats...</div>
+            </section>
+            <section id="analysis" class="content-section">
+                <div class="loading-state">Syncing player data...</div>
+            </section>
+            <section id="transfers" class="content-section">
+                <div class="loading-state">Ready for transfer simulation.</div>
+            </section>
+            <section id="projections" class="content-section">
+                <div class="loading-state">Calculating future scenarios...</div>
+            </section>
+            <section id="live" class="content-section">
+                <div class="loading-state">Fetching live match points...</div>
+            </section>
+            <section id="mini-league" class="content-section">
+                <div class="loading-state">Fetching league tables...</div>
+            </section>
+            <section id="watchlist" class="content-section">
+                <div class="analysis-header">
+                    <h1>My Watchlist</h1>
+                </div>
+                <div id="watchlist-content"></div>
+            </section>
+            <section id="advisor" class="content-section">
+                <div id="ai-advisor-content"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <p>&copy; 2026 xGAFFER. Tactical Intel by <strong>MIKESTH3TIC</strong></p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-container" class="modal-container hidden">
+        <div class="modal">
+            <header class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="close-modal">&times;</button>
+            </header>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip hidden"></div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
